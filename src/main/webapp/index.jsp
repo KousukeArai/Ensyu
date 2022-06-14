@@ -15,6 +15,7 @@
 			<input type="text" name="pref"><br>
 			市区町村：<br>
 			<input type="text" name="city"><br>
+			<br>
 			<input type="submit" value="アンケートの回答に進む">
 		</form>
 	</body>

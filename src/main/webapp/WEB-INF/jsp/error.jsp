@@ -14,7 +14,11 @@ String path = (String) session.getAttribute("path");
 	</head>
 	<body>
 		<h1>WEBアンケートサイト</h1>
-			<%= errMsg %>
-			<a href=<%= path %>><%= back %></a>
+			<%= errMsg %><br>
+		<form action= <%= path %> method="get">
+			<input type="submit" value=<%= back %>>
+		</form>
+		
+		
 	</body>
 </html>

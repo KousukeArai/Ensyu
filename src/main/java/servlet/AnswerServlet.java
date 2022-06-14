@@ -16,24 +16,20 @@ import javax.servlet.http.HttpSession;
  */
 @WebServlet("/AnswerServlet")
 public class AnswerServlet extends HttpServlet {
-
+	private static final long serialVersionUID = 1L;
+	
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		//RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/answer.jsp");
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/answer.jsp");
 		dispatcher.forward(request, response);
 	}
 
-	private static final long serialVersionUID = 1L;
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+		//セッションスコープの取得
 		HttpSession session = request.getSession();
 		
 		request.setCharacterEncoding("UTF-8");
@@ -45,21 +41,21 @@ public class AnswerServlet extends HttpServlet {
 		}
 		if (errMsg.length() != 0) {
 			session.setAttribute("errMsg", errMsg);
-			session.setAttribute("path", "/WEB-INF/jsp/answer.jsp");
+			session.setAttribute("path", "/Ensyu/AnswerServlet");
 			//ここをどうするか！！！！！！
 			session.setAttribute("back", "戻る");
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/error.jsp");
 			dispatcher.forward(request, response);
 			session.removeAttribute("errMsg");
+			
+			//ここで処理を終了するためにreturnする
+			return;
 		}
 
-		//セッションスコープの取得
-		//HttpSession session = request.getSession();
 		Integer cnt = (Integer) session.getAttribute("cnt");
 		List<String> ansList = (List<String>) session.getAttribute("ansList");
 		ansList.add(cnt, ans);
 		cnt++;
-
 		session.setAttribute("cnt", cnt);
 		session.setAttribute("asnList", ansList);
 		String path = "";
@@ -67,7 +63,6 @@ public class AnswerServlet extends HttpServlet {
 			path = "/WEB-INF/jsp/result.jsp";
 		} else {
 			path = "/WEB-INF/jsp/answer.jsp";
-			//path = "/answer.jsp";
 		}
 
 		//フォワード

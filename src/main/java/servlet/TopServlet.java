@@ -74,8 +74,8 @@ public class TopServlet extends HttpServlet {
 
 		//質問文を持つリストの作成
 		String q1 = name + "さんが、" + pref + city + "に住んでいる年数をお知らせください。";
-		String q2 = "現在、" + pref + city + "が「充実している」と思うものをすべてお知らせください。";
-		String q3 = "今後、" + pref + city + "が「改善すべき」と思うものをすべてお知らせください。";
+		String q2 = "現在、" + pref + city + "が「充実している」と思うことをお書きください。";
+		String q3 = "今後、" + pref + city + "が「改善すべき」と思うことをお書きください。";
 		String q4 = "今後も" + pref + city + "に住み続けたいと思いますか。";
 		String q5 = pref + city + "に対してご意見・ご要望がございましたら、ご自由にお書きください。";
 		List<String> qList = new ArrayList<>();
