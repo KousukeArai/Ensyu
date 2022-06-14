@@ -10,11 +10,12 @@ UserModel user = (UserModel) session.getAttribute("user");
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/style.css">
 <meta charset="UTF-8">
 <title>WEBアンケートサイト</title>
 </head>
 <body>
-<h2>アンケート結果</h2>
+<h1>アンケート結果</h1>
 
 <%for(int i = 0; i < qList.size(); i++){ %>
 	<p>Q<%=i + 1 %>. <%= qList.get(i) %></p>

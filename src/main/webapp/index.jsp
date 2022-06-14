@@ -4,7 +4,13 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
+		<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/style.css">
 		<title>WEBアンケートサイト</title>
+<!-- 		<style type="text/css">
+		h1 {
+				background-color: #eeece9;
+		}
+		</style> -->
 	</head>
 	<body>
 		<h1>WEBアンケートサイト TOPページ</h1>

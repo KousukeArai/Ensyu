@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"
+    %>
 <%@ page import="java.util.List" %>
 <%
 String errMsg = (String) session.getAttribute("errMsg");
@@ -10,6 +11,7 @@ String path = (String) session.getAttribute("path");
 <html>
 	<head>
 		<meta charset="UTF-8">
+		<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/style.css">
 		<title>WEBアンケートサイト</title>
 	</head>
 	<body>
@@ -17,8 +19,6 @@ String path = (String) session.getAttribute("path");
 			<%= errMsg %><br>
 		<form action= <%= path %> method="get">
 			<button type="submit"><%= back %></button>
-		</form>
-		
-		
+		</form>		
 	</body>
 </html>
