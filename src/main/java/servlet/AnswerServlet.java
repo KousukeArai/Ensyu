@@ -21,6 +21,7 @@ public class AnswerServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		//回答用ページへのフォワード
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/answer.jsp");
 		dispatcher.forward(request, response);
 	}
@@ -31,28 +32,43 @@ public class AnswerServlet extends HttpServlet {
 
 		//セッションスコープの取得
 		HttpSession session = request.getSession();
-		
 		request.setCharacterEncoding("UTF-8");
+		
+		//入力した回答の取得
 		String ans = request.getParameter("ans");
-
+		List<String> qList = (List<String>) session.getAttribute("qList");
+		Integer cnt = (Integer) session.getAttribute("cnt");
+		
+		//回答がnullだった際の処理
 		String errMsg = "";
 		if (ans == null || ans.length() == 0) {
-			errMsg += "回答が入力されていません<br>";
+			errMsg += "Q" + (cnt + 1) + ". " + qList.get(cnt) + "<br>※回答が入力されていません。<br>";
 		}
 		if (errMsg.length() != 0) {
 			session.setAttribute("errMsg", errMsg);
 			session.setAttribute("path", "/Ensyu/AnswerServlet");
-			//ここをどうするか！！！！！！
+/*			
+ 
+ 		 ここをどうするか！！！！！！
+		↑answer.jspを改変し、getでAnswerServletに飛ばしてdoGetで処理してもらう方針になりました。
+		これでanswer.jspをWEB-INF直下に置いて直接アクセスされる、ということを避けることができます。
+		また、「戻る」を押しても次の問題に進んでしまうという不具合ですが、
+		原因は先日話した「return後の処理が通らないように、forward後の処理を通らない」
+		というドヤ顔で語っていた私の大きな間違いから生じたものでした。大変失礼しました。
+		正しくは、forwardの後も処理が走り、それが原因でcntの値が増えていました。
+		解決のために下にもありますが、returnを使って処理を終了しています。
+		 
+*/
 			session.setAttribute("back", "戻る");
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/error.jsp");
 			dispatcher.forward(request, response);
 			session.removeAttribute("errMsg");
 			
-			//ここで処理を終了するためにreturnする
+			//処理を終了するためにreturnする
 			return;
 		}
-
-		Integer cnt = (Integer) session.getAttribute("cnt");
+		
+		//問題と回答を格納するリストのインデックスの数字に1追加し、スコープに保存して次の回答ページへ
 		List<String> ansList = (List<String>) session.getAttribute("ansList");
 		ansList.add(cnt, ans);
 		cnt++;

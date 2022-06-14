@@ -16,7 +16,7 @@
 			市区町村：<br>
 			<input type="text" name="city"><br>
 			<br>
-			<input type="submit" value="アンケートの回答に進む">
+			<button type="submit">アンケートの回答に進む</button>
 		</form>
 	</body>
 </html>

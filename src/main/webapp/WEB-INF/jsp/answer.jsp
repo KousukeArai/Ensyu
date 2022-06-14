@@ -17,7 +17,7 @@ String question= qList.get(cnt);
 		Q<%= cnt + 1 %>. <%= question %><br>
 		<form action="/Ensyu/AnswerServlet" method="post">
 		<input type="text" name="ans">
-		<input type="submit" value="送信">
+		<button type="submit">送信</button>
 		</form>
 	</body>
 </html>
