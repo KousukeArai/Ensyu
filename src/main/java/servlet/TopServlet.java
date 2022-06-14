@@ -39,6 +39,9 @@ public class TopServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
+		//セッションスコープにオブジェクトの保存
+		HttpSession session = request.getSession();
+		
 		//問題リストと回答リストの要素取得のためのインデックスとなる数
 		Integer cnt = 0;
 		
@@ -47,6 +50,24 @@ public class TopServlet extends HttpServlet {
 		String name = request.getParameter("name");
 		String pref = request.getParameter("pref");
 		String city = request.getParameter("city");
+		
+		String errMsg = "";
+		if (name == null || name.length() == 0) {
+			errMsg += "名前が入力されていません<br>";
+		}
+		if (pref == null || pref.length() == 0) {
+			errMsg += "都道府県が入力されていません<br>";
+		}
+		if (city == null || city.length() == 0) {
+			errMsg += "市区町村が入力されていません<br>";
+		}
+		if (errMsg.length() != 0) {
+			session.setAttribute("errMsg", errMsg);
+			session.setAttribute("path", "/Ensyu/TopServlet");
+			session.setAttribute("back", "TOPへ");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/error.jsp");
+			dispatcher.forward(request, response);
+		}
 
 		//個人情報をプロパティに設定
 		UserModel userModel = new UserModel(name, pref, city);
@@ -68,7 +89,6 @@ public class TopServlet extends HttpServlet {
 		List<String> ansList = new ArrayList<>();
 		
 		//セッションスコープにオブジェクトの保存
-		HttpSession session = request.getSession();
 		session.setAttribute("qList", qList);
 		session.setAttribute("ansList", ansList);
 		session.setAttribute("user", userModel);
