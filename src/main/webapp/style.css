@@ -53,7 +53,7 @@ button.btn {
   border-radius: 0.5rem;
 }
 
-/* button.btn-border-shadow {
+button.btn-border-shadow {
   padding: calc(1.5rem - 12px) 3rem 1.5rem;
 
   background: #fff;
@@ -92,7 +92,7 @@ button.btn-border-shadow--color2:before {
   border-radius: 100vh;
   -webkit-box-shadow: 3px 3px 0 #78e5e5;
   box-shadow: 3px 3px 0 #78e5e5;
-} */
+}
 
 .wrap{
   display: flex;
