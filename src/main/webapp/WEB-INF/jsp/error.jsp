@@ -11,7 +11,7 @@ String path = (String) session.getAttribute("path");
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/style.css">
+		<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/style.css">
 		<title>WEBアンケートサイト</title>
 	</head>
 	<body>

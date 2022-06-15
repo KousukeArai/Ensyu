@@ -10,7 +10,7 @@ UserModel user = (UserModel) session.getAttribute("user");
 <!DOCTYPE html>
 <html>
 	<head>
-		<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/style.css">
+		<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/style.css">
 		<meta charset="UTF-8">
 		<title>WEBアンケートサイト</title>
 	</head>
