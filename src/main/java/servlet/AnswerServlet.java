@@ -40,6 +40,7 @@ public class AnswerServlet extends HttpServlet {
 		String ans = request.getParameter("ans");
 		List<String> qList = (List<String>) session.getAttribute("qList");
 		Integer cnt = (Integer) session.getAttribute("cnt");
+		String path = "";
 
 		//回答がnullだった際の処理
 		String errMsgText = ErrMsgLogic.executeAnswer(ans);
@@ -61,25 +62,26 @@ public class AnswerServlet extends HttpServlet {
 					 
 			*/
 			session.setAttribute("back", "戻る");
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/error.jsp");
-			dispatcher.forward(request, response);
-			session.removeAttribute("errMsg");
+			path = "/WEB-INF/jsp/error.jsp";
+			//RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/error.jsp");
+			//dispatcher.forward(request, response);
+			//session.removeAttribute("errMsg");
 
 			//処理を終了するためにreturnする
-			return;
-		}
-
-		//問題と回答を格納するリストのインデックスの数字に1追加し、スコープに保存して次の回答ページへ
-		List<String> ansList = (List<String>) session.getAttribute("ansList");
-		ansList.add(cnt, ans);
-		cnt++;
-		session.setAttribute("cnt", cnt);
-		session.setAttribute("asnList", ansList);
-		String path = "";
-		if (cnt >= 5) {
-			path = "/WEB-INF/jsp/result.jsp";
+			//return;
 		} else {
-			path = "/WEB-INF/jsp/answer.jsp";
+			//問題と回答を格納するリストのインデックスの数字に1追加し、スコープに保存して次の回答ページへ
+			List<String> ansList = (List<String>) session.getAttribute("ansList");
+			ansList.add(cnt, ans);
+			cnt++;
+			session.setAttribute("cnt", cnt);
+			session.setAttribute("asnList", ansList);
+			//String path = "";
+			if (cnt >= 5) {
+				path = "/WEB-INF/jsp/result.jsp";
+			} else {
+				path = "/WEB-INF/jsp/answer.jsp";
+			}
 		}
 
 		//フォワード
