@@ -14,7 +14,8 @@
 		Q<c:out value="${cnt + 1}" />.<c:out value="${qList.get(cnt) }" />
 		<form action="/Ensyu/AnswerServlet" method="post">
 		<input type="text" name="ans">
-		<button type="submit">送信</button>
+		<br>
+		<button type="submit" class="button">送信</button>
 		</form>
 	</body>
 </html>

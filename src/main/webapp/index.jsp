@@ -9,22 +9,25 @@
 	</head>
 	<body>
 	    <div class="wrap">
-  		<header>
-			<h1 class="logo">WEBアンケートサイト TOPページ</h1>
-		</header>
-	  	<main>
-
+  			<header class="header">
+				<h1 class="logo">WEBアンケートサイト TOPページ</h1>
+			</header>
+	  		<main class="main">
 		    	<form action="/Ensyu/TopServlet" method="post">
-			          名前：<br>
-			          <input type="text" name="name"><br>
-			          都道府県：<br>
-			          <input type="text" name="pref"><br>
-			          市区町村：<br>
-			          <input type="text" name="city"><br>
-			          <br>
-						<button type="submit" class="btn btn-border-shadow btn-border-shadow--color2">アンケートの回答に進む</button>
+		    		<div class="iptext">
+		    			<label class="ef" for="name">名前</label><br>
+		    			<input type="text" name="name" placeholder="名前">
+		    		</div>
+		    		<div class="iptext">
+		    			<label class="ef" for="pref">都道府県</label><br>
+		    			<input type="text" name="pref" placeholder="都道府県">
+		    		</div>
+		    		<div class="iptext">
+		    			<label class="ef" for="city">市区町村</label><br>
+		    			<input type="text" name="city" placeholder="市区町村">
+		    		</div><br>
+		    		<button type="submit" class="button">アンケートの回答に進む</button>
 		    	</form>
-      		
 		</main>
 		</div>
 	</body>

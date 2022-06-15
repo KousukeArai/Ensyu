@@ -18,7 +18,7 @@ UserModel user = (UserModel) session.getAttribute("user");
 		<h1>アンケート結果</h1>
 		<%for(int i = 0; i < qList.size(); i++){ %>
 			<p>Q<%=i + 1 %>. <%= qList.get(i) %></p>
-			<p>A. <%= ansList.get(i) %></p><br>
+			<p class="textAns"><span>A. <%= ansList.get(i) %></span></p><br>
 		<%} %>
 		<p>ご協力ありがとうございました。</p><br>
 		<a href="/Ensyu/TopServlet">TOPに戻る</a>
