@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import model.Question;
 import model.UserModel;
 
 /**
@@ -39,7 +40,7 @@ public class TopServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		//セッションスコープにオブジェクトの保存
+		//セッションスコープの呼び出し
 		HttpSession session = request.getSession();
 
 		//問題リストと回答リストの要素取得のためのインデックスとなる数
@@ -69,23 +70,15 @@ public class TopServlet extends HttpServlet {
 			dispatcher.forward(request, response);
 		}
 
-		//追加。西浦
-
 		//個人情報をプロパティに設定
 		UserModel userModel = new UserModel(name, pref, city);
 
+		//質問文の読み込み
+		Question q = new Question(name, pref, city);
+		
 		//質問文を持つリストの作成
-		String q1 = name + "さんが、" + pref + city + "に住んでいる年数をお知らせください。";
-		String q2 = "現在、" + pref + city + "が「充実している」と思うことをお書きください。";
-		String q3 = "今後、" + pref + city + "が「改善すべき」と思うことをお書きください。";
-		String q4 = "今後も" + pref + city + "に住み続けたいと思いますか。";
-		String q5 = pref + city + "に対してご意見・ご要望がございましたら、ご自由にお書きください。";
 		List<String> qList = new ArrayList<>();
-		qList.add(q1);
-		qList.add(q2);
-		qList.add(q3);
-		qList.add(q4);
-		qList.add(q5);
+		qList = q.getQustion();
 
 		//回答を持つリストの作成
 		List<String> ansList = new ArrayList<>();
