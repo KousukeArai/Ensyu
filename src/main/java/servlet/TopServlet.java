@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import model.ErrMsgLogic;
 import model.Question;
 import model.UserModel;
 
@@ -52,16 +53,9 @@ public class TopServlet extends HttpServlet {
 		String pref = request.getParameter("pref");
 		String city = request.getParameter("city");
 
-		String errMsg = "";
-		if (name == null || name.length() == 0) {
-			errMsg += "名前が入力されていません<br>";
-		}
-		if (pref == null || pref.length() == 0) {
-			errMsg += "都道府県が入力されていません<br>";
-		}
-		if (city == null || city.length() == 0) {
-			errMsg += "市区町村が入力されていません<br>";
-		}
+		//エラーメッセージｗ
+		String errMsg = ErrMsgLogic.executePersonal(name, pref, city);
+
 		if (errMsg.length() != 0) {
 			session.setAttribute("errMsg", errMsg);
 			session.setAttribute("path", "/Ensyu/TopServlet");
@@ -75,7 +69,7 @@ public class TopServlet extends HttpServlet {
 
 		//質問文の読み込み
 		Question q = new Question(name, pref, city);
-		
+
 		//質問文を持つリストの作成
 		List<String> qList = new ArrayList<>();
 		qList = q.getQustion();

@@ -17,6 +17,7 @@
 		    		<div class="iptext">
 		    			<label class="ef" for="name">名前</label><br>
 		    			<input type="text" name="name" placeholder="名前">
+		    			<!--input type="text" name="name" placeholder="名前" required-->
 		    		</div>
 		    		<div class="iptext">
 		    			<label class="ef" for="pref">都道府県</label><br>
@@ -30,5 +31,6 @@
 		    	</form>
 		</main>
 		</div>
+		<script src="<%=request.getContextPath() %>/js/test.js"></script>
 	</body>
 </html>
