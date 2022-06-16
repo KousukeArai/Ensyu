@@ -45,6 +45,8 @@ public class AnswerServlet extends HttpServlet {
 		//回答がnullだった際の処理
 		String errMsgText = ErrMsgLogic.executeAnswer(ans);
 
+		//エラーメッセージの有無による条件分岐
+		//エラーメッセージがあればerror.jspへ。なければ次へ
 		if (errMsgText.length() != 0) {
 			String errMsg = "Q" + (cnt + 1) + ". " + qList.get(cnt) + errMsgText;
 			session.setAttribute("errMsg", errMsg);
@@ -77,7 +79,7 @@ public class AnswerServlet extends HttpServlet {
 			session.setAttribute("cnt", cnt);
 			session.setAttribute("asnList", ansList);
 			//String path = "";
-			if (cnt >= 5) {
+			if (cnt >= qList.size()) {
 				path = "/WEB-INF/jsp/result.jsp";
 			} else {
 				path = "/WEB-INF/jsp/answer.jsp";
