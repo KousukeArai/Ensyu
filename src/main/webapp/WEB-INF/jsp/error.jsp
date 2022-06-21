@@ -19,6 +19,7 @@ String path = (String) session.getAttribute("path");
 			<%= errMsg %><br>
 		<form action= <%= path %> method="get">
 			<button type="submit" class="button"><%= back %></button>
-		</form>		
+		</form>
+		<jsp:include page="/WEB-INF/jsp/footer.jsp" />
 	</body>
 </html>

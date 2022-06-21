@@ -17,5 +17,6 @@
 		<br>
 		<button type="submit" class="button">送信</button>
 		</form>
+		<jsp:include page="/WEB-INF/jsp/footer.jsp" />
 	</body>
 </html>

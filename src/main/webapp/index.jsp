@@ -31,6 +31,7 @@
 		    	</form>
 		</main>
 		</div>
+		<jsp:include page="/WEB-INF/jsp/footer.jsp" />
 		<script src="<%=request.getContextPath() %>/js/test.js"></script>
 	</body>
 </html>

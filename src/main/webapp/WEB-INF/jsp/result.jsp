@@ -24,5 +24,6 @@ UserModel user = (UserModel) session.getAttribute("user");
 			<p>ご協力ありがとうございました。</p><br>
 			<a href="/Ensyu/TopServlet">TOPに戻る</a>
 		</div>
+		<jsp:include page="/WEB-INF/jsp/footer.jsp" />
 	</body>
 </html>
